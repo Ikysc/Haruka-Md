@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Kecepatan Website Per Detik</title>
+    <style>
+      /* CSS untuk styling */
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+      }
+      
+      p {
+        margin-bottom: 10px;
+      }
+      
+      .speed-container {
+        background-color: #f2f2f2;
+        padding: 20px;
+        text-align: center;
+        margin-top: 20px;
+      }
+      
+      .speed-number {
+        font-size: 48px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      
+      .speed-label {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Kecepatan Website Per Detik</h1>
+    <p>Mengukur kecepatan website sangat penting untuk memastikan pengalaman pengguna yang optimal. Gunakan alat di bawah ini untuk mengukur kecepatan website Anda per detik:</p>
+    
+    <div class="speed-container">
+      <p>Kecepatan Website Anda:</p>
+      <div class="speed-number" id="speed-number">0</div>
+      <div class="speed-label">detik</div>
+    </div>
+    
+    <script>
+      // JavaScript untuk menghitung kecepatan website per detik
+      window.onload = function() {
+        var startTime = new Date().getTime();
+        var endTime = new Date().getTime();
+        var speed = (endTime - startTime) / 1000;
+        document.getElementById("speed-number").innerHTML = speed.toFixed(2);
+      };
+    </script>
+  </body>
+</html>
