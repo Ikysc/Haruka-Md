@@ -1,0 +1,30 @@
+{
+    "ownerNumber": ["62838653241239@s.whatsapp.net"],
+    "ownerName": "ᴹᴿ᭄ RickyOfcོ ×፝֟͜×",
+    "instagram" : "-",
+    "gcwa" : "-",
+    "botName": "AzzBot-Mdོ ",
+    "footer": "api.zeeoneofc.my.id",
+    "sessionName": "session",
+    "fotoDonasi": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ2AS0UNUWp_Ni71F9WIShsgQq7p_j0XjI6A&s",
+    "pathimg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8XkBxbt7MwzdKUmHhoVX5rcKLT6E3__Gjsg&usqp=CAU",
+    "BotKey": "XgapmPNkgglizA7",
+    "OpenAIKey": "your openai key",
+    "audio_di_bagian_menu": "./menu.mp3",
+    "auto_welcomeMsg": true,
+    "auto_leaveMsg": true, 
+    "antiViewOnce": true,
+    "grupOnly": false,
+    "antiDelete": true,
+    "autobio": false,
+    "anticall": true,
+    "autorespond": false,
+    "autoblok212": true,
+    "autoread": true,
+    "gamewaktu": 60,
+    "limitCount": 25,
+    "gcount": {
+        "prem": 1000,
+        "user": 5
+    }
+}
