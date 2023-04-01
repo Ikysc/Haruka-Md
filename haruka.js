@@ -26,7 +26,6 @@ server.listen(8080, '0.0.0.0', () => {
 
 
 const { spawn } = require('child_process')
-const path = require('path')
 
 function start() {
 	let args = [path.join(__dirname, 'index.js'), ...process.argv.slice(2)]
