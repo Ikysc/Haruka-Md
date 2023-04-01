@@ -6,8 +6,8 @@
     "botName": "AzzBot-Mdོ ",
     "footer": "api.zeeoneofc.my.id",
     "sessionName": "session",
-    "fotoDonasi": "Haruka.jpg",
-    "pathimg": "Haruka.jpg",
+    "fotoDonasi": "images.jpeg",
+    "pathimg": "images.jpeg",
     "BotKey": "XgapmPNkgglizA7",
     "OpenAIKey": "your openai key",
     "audio_di_bagian_menu": "./menu.mp3",
@@ -22,9 +22,9 @@
     "autoblok212": false,
     "autoread": true,
     "gamewaktu": 60,
-    "limitCount": 5,
+    "limitCount": 25,
     "gcount": {
         "prem": 1000,
-        "user": 5
+        "user": 100
     }
 }
