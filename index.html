@@ -1,67 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Edit Config</title>
-  </head>
-  <body>
-    <h1>Edit Config</h1>
-    <textarea id="config" rows="10" cols="50"></textarea>
-    <br>
-    <button id="saveButton">Simpan</button>
-    <button id="cancelButton">Batal</button>
-    <button id="exitButton">Keluar</button>
+<head>
+	<title>Text Scroller with Motivational Words</title>
+	<style>
+		/* styling untuk container teks */
+		#text-container {
+			height: 50px;
+			overflow: hidden;
+			position: relative;
+		}
+		
+		/* styling untuk teks yang berjalan */
+		#text-container p {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			line-height: 50px;
+			text-align: center;
+			font-size: 24px;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div id="text-container">
+		<p id="text"></p>
+	</div>
 
-    <script>
-      // membaca data dari file config.json
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', 'config.json', true);
-      xhr.onload = function() {
-        if (this.status === 200) {
-          const config = JSON.parse(this.responseText);
-          document.getElementById('config').value = JSON.stringify(config, null, 2);
-        }
-      };
-      xhr.send();
+	<script>
+		// Array berisi kata-kata motivasi
+		const motivasi = ["Believe in yourself", "Never give up", "Stay positive", "Keep pushing", "Dream big", "Take action", "Focus on the goal", "Stay motivated", "Be persistent", "Stay hungry"];
 
-      // ketika tombol simpan diklik
-      document.getElementById('saveButton').addEventListener('click', function() {
-        const config = document.getElementById('config').value;
-        try {
-          JSON.parse(config);
-          const xhr = new XMLHttpRequest();
-          xhr.open('PUT', 'config.json', true);
-          xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-          xhr.onload = function() {
-            if (this.status === 200) {
-              alert('Konfigurasi berhasil disimpan!');
-            } else {
-              alert('Gagal menyimpan konfigurasi.');
-            }
-          };
-          xhr.send(config);
-        } catch (e) {
-          alert('Tidak dapat menyimpan konfigurasi karena JSON tidak valid.');
-        }
-      });
+		// Fungsi untuk mengacak kata motivasi dan mengembalikan satu kata acak
+		function acakMotivasi() {
+			return motivasi[Math.floor(Math.random() * motivasi.length)];
+		}
 
-      // ketika tombol batal diklik
-      document.getElementById('cancelButton').addEventListener('click', function() {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'config.json', true);
-        xhr.onload = function() {
-          if (this.status === 200) {
-            const config = JSON.parse(this.responseText);
-            document.getElementById('config').value = JSON.stringify(config, null, 2);
-          }
-        };
-        xhr.send();
-      });
+		// Fungsi untuk memutar teks keluar
+		function putarTeksKeluar(node, callback) {
+			const chars = node.textContent.split("");
+			const length = chars.length;
+			let i = 0;
 
-      // ketika tombol keluar diklik
-      document.getElementById('exitButton').addEventListener('click', function() {
-        window.location.href = 'index.html';
-      });
-    </script>
-  </body>
+			const timer = setInterval(function() {
+				node.textContent = node.textContent.slice(0, -1);
+				i++;
+
+				if (i >= length) {
+					clearInterval(timer);
+					callback();
+				}
+			}, 50);
+		}
+
+		// Fungsi untuk memutar teks masuk
+		function putarTeksMasuk(node, text, callback) {
+			const chars = text.split("");
+			const length = chars.length;
+			let i = 0;
+
+			const timer = setInterval(function() {
+				node.textContent += chars[i];
+				i++;
+
+				if (i >= length) {
+					clearInterval(timer);
+					callback();
+				}
+			}, 50);
+		}
+
+		// Fungsi untuk mengganti teks setiap 5 detik
+		function gantiMotivasi() {
+			const textContainer = document.getElementById("text-container");
+			const textNode = document.getElementById("text");
+
+			putarTeksKeluar(textNode, function() {
+				const motivasiBaru = acakMotivasi();
+				putarTeksMasuk(textNode, motivasiBaru, function() {
+					setTimeout(gantiMotivasi, 5000);
+				});
+			});
+		}
+
+		// Panggil fungsi untuk pertama kali
+		gantiMotivasi();
+	</script>
+</body>
 </html>
