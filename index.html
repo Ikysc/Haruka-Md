@@ -1,63 +1,50 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Kecepatan Website Per Detik</title>
-    <style>
-      /* CSS untuk styling */
-      body {
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.5;
-      }
-      
-      h1 {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 20px;
-      }
-      
-      p {
-        margin-bottom: 10px;
-      }
-      
-      .speed-container {
-        background-color: #f2f2f2;
-        padding: 20px;
-        text-align: center;
-        margin-top: 20px;
-      }
-      
-      .speed-number {
-        font-size: 48px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-      
-      .speed-label {
-        font-size: 20px;
-        font-weight: bold;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Kecepatan Website Per Detik</h1>
-    <p>Mengukur kecepatan website sangat penting untuk memastikan pengalaman pengguna yang optimal. Gunakan alat di bawah ini untuk mengukur kecepatan website Anda per detik:</p>
-    
-    <div class="speed-container">
-      <p>Kecepatan Website Anda:</p>
-      <div class="speed-number" id="speed-number">0</div>
-      <div class="speed-label">detik</div>
-    </div>
-    
-    <script>
-      // JavaScript untuk menghitung kecepatan website per detik
-      window.onload = function() {
-        var startTime = new Date().getTime();
-        var endTime = new Date().getTime();
-        var speed = (endTime - startTime) / 1000;
-        document.getElementById("speed-number").innerHTML = speed.toFixed(2);
-      };
-    </script>
-  </body>
+<head>
+	<title>Bot Active</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			background-color: #222;
+			background-image: linear-gradient(to bottom right, #ff00ff, #00ffff, #ff0000);
+			background-size: 600% 600%;
+			animation: background 10s ease infinite;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		h1 {
+			font-family: sans-serif;
+			font-size: 10rem;
+			color: transparent;
+			text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 55px #ff00ff, 0 0 75px #ff00ff;
+			animation: text 3s ease infinite;
+		}
+
+		@keyframes background {
+			0% { background-position: 0 0; }
+			50% { background-position: 100% 0; }
+			100% { background-position: 0 100%; }
+		}
+
+		@keyframes text {
+			0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 55px #ff00ff, 0 0 75px #ff00ff; }
+			50% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 55px #00ffff, 0 0 75px #00ffff; }
+			100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 55px #ff00ff, 0 0 75px #ff00ff; }
+		}
+	</style>
+</head>
+<body>
+	<h1>bot active</h1>
+
+	<script>
+		setInterval(function() {
+			var randomColor = Math.floor(Math.random()*16777215).toString(16);
+			document.body.style.backgroundColor = "#" + randomColor;
+		}, 500);
+	</script>
+</body>
 </html>
