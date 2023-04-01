@@ -1,50 +1,67 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Bot Active</title>
-	<style>
-		body {
-			margin: 0;
-			padding: 0;
-			height: 100vh;
-			background-color: #222;
-			background-image: linear-gradient(to bottom right, #ff00ff, #00ffff, #ff0000);
-			background-size: 600% 600%;
-			animation: background 10s ease infinite;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Config</title>
+  </head>
+  <body>
+    <h1>Edit Config</h1>
+    <textarea id="config" rows="10" cols="50"></textarea>
+    <br>
+    <button id="saveButton">Simpan</button>
+    <button id="cancelButton">Batal</button>
+    <button id="exitButton">Keluar</button>
 
-		h1 {
-			font-family: sans-serif;
-			font-size: 10rem;
-			color: transparent;
-			text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 55px #ff00ff, 0 0 75px #ff00ff;
-			animation: text 3s ease infinite;
-		}
+    <script>
+      // membaca data dari file config.json
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', 'config.json', true);
+      xhr.onload = function() {
+        if (this.status === 200) {
+          const config = JSON.parse(this.responseText);
+          document.getElementById('config').value = JSON.stringify(config, null, 2);
+        }
+      };
+      xhr.send();
 
-		@keyframes background {
-			0% { background-position: 0 0; }
-			50% { background-position: 100% 0; }
-			100% { background-position: 0 100%; }
-		}
+      // ketika tombol simpan diklik
+      document.getElementById('saveButton').addEventListener('click', function() {
+        const config = document.getElementById('config').value;
+        try {
+          JSON.parse(config);
+          const xhr = new XMLHttpRequest();
+          xhr.open('PUT', 'config.json', true);
+          xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+          xhr.onload = function() {
+            if (this.status === 200) {
+              alert('Konfigurasi berhasil disimpan!');
+            } else {
+              alert('Gagal menyimpan konfigurasi.');
+            }
+          };
+          xhr.send(config);
+        } catch (e) {
+          alert('Tidak dapat menyimpan konfigurasi karena JSON tidak valid.');
+        }
+      });
 
-		@keyframes text {
-			0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 55px #ff00ff, 0 0 75px #ff00ff; }
-			50% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 55px #00ffff, 0 0 75px #00ffff; }
-			100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff, 0 0 55px #ff00ff, 0 0 75px #ff00ff; }
-		}
-	</style>
-</head>
-<body>
-	<h1>bot active</h1>
+      // ketika tombol batal diklik
+      document.getElementById('cancelButton').addEventListener('click', function() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'config.json', true);
+        xhr.onload = function() {
+          if (this.status === 200) {
+            const config = JSON.parse(this.responseText);
+            document.getElementById('config').value = JSON.stringify(config, null, 2);
+          }
+        };
+        xhr.send();
+      });
 
-	<script>
-		setInterval(function() {
-			var randomColor = Math.floor(Math.random()*16777215).toString(16);
-			document.body.style.backgroundColor = "#" + randomColor;
-		}, 500);
-	</script>
-</body>
+      // ketika tombol keluar diklik
+      document.getElementById('exitButton').addEventListener('click', function() {
+        window.location.href = 'index.html';
+      });
+    </script>
+  </body>
 </html>
