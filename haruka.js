@@ -1,28 +1,18 @@
 const http = require('http');
-const fs = require('fs');
-const path = require('path');
+
+const hostname = '0.0.0.0';
+const port = 3000;
 
 const server = http.createServer((req, res) => {
-  // Mendapatkan path file yang diminta oleh client
-  const filePath = path.join(__dirname, 'index.html');
-
-  // Membaca isi file index.html
-  fs.readFile(filePath, 'utf-8', (err, content) => {
-    if (err) {
-      // Mengirimkan respon error jika gagal membaca file
-      res.writeHead(500);
-      res.end('Error loading index.html');
-    } else {
-      // Mengirimkan respon dengan isi file index.html
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.end(content);
-    }
-  });
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World!');
 });
 
-server.listen(8080, '0.0.0.0', () => {
-  console.log('Server running at http://0.0.0.0:8080/');
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
+
 
 
 const { spawn } = require('child_process')
